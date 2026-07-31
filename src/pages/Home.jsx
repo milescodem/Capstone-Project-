@@ -1,40 +1,107 @@
+import Navbar from "../components/Navbar";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Navbar from "../components/Navbar.jsx";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
+import "./Home.css";
+import { Link } from "react-router-dom";
 
-function ShapeExample() {
+function CardExample() {
   return (
-    <>
-      <Navbar />
+    <div className="container">
 
-      <Container>
-        <Row>
-          <Col xs={6} md={4}>
-            <Image 
-              src="https://www.ctortho.com/wp-content/uploads/2023/02/istockphoto-186873165-612x612-1-300x300.jpg" 
-              rounded 
-            />
-          </Col>
+  <Navbar />
 
-          <Col xs={6} md={4}>
-            <Image 
-              src="https://www.fairviewrehab.com/wp-content/uploads/2021/02/neurological-diseases.jpg" 
-              roundedCircle 
-            />
-          </Col>
+  <div className="row">
+        
+        <h1 className="text-center mt-4">
+  Physical Therapy Insurance Plans
+</h1>
 
-          <Col xs={6} md={4}>
-            <Image 
-              src="https://cdn.residencyadvisor.com/images/articles_v1_rewrite/v1_MEDICAL_SCHOOL_LIFE_AND_EXAMS_CHOOSING_A_SPECIALTY_pediatrics_geriatrics_comparative_analys-step1-pediatrics-vs-geriatrics-medical-special-1836.png" 
-              thumbnail 
+<p className="text-center">
+  Find insurance providers that help cover your physical therapy needs.
+</p>
+
+        {/* UnitedHealthcare Card */}
+        <div className="col-md-4">
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src="https://skylinebenefit.com/wp-content/uploads/2022/07/UnitedHealthcare.jpg"
+              style={{ height: "200px", objectFit: "cover" }}
             />
-          </Col>
-        </Row>
-      </Container>
-    </>
+
+            <Card.Body>
+              <Card.Title>United Healthcare</Card.Title>
+              <Card.Text>
+                Learn about United Healthcare physical therapy coverage and benefits.
+              </Card.Text>
+
+              <Link to="/signup">
+                <Button variant="primary">
+                  Sign Up
+                </Button>
+              </Link>
+
+            </Card.Body>
+          </Card>
+        </div>
+
+
+        {/* Aetna Card */}
+        <div className="col-md-4">
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src="https://healthcareinsider.com/wp-content/uploads/2025/09/aetna-health-insurance-logo.png"
+              style={{ height: "200px", objectFit: "cover" }}
+            />
+
+            <Card.Body>
+              <Card.Title>Aetna</Card.Title>
+              <Card.Text>
+                Explore Aetna insurance options for physical therapy services.
+              </Card.Text>
+
+            <Link to="/signup">
+              <Button variant="primary">
+                 Sign Up
+              </Button>
+            </Link>
+
+            </Card.Body>
+          </Card>
+        </div>
+
+
+        {/* Blue Cross Blue Shield Card */}
+        <div className="col-md-4">
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src="https://news.ibx.com/wp-content/uploads/2020/10/blue-cross-blue-shield-logo-vector_Newsroom.jpg"
+              style={{ height: "200px", objectFit: "cover" }}
+            />
+
+            <Card.Body>
+              <Card.Title>Blue Cross Blue Shield</Card.Title>
+              <Card.Text>
+                Find information about Blue Cross Blue Shield therapy coverage.
+              </Card.Text>
+
+            <Link to="/signup">
+              <Button variant="primary">
+                Sign Up
+              </Button>
+            </Link>
+
+            </Card.Body>
+          </Card>
+        </div>
+
+      </div>
+    </div>
   );
 }
 
-export default ShapeExample;
+export default CardExample;
