@@ -15,26 +15,26 @@ function CardExample() {
   <div className="row">
         
         <h1 className="text-center mt-4">
-  Physical Therapy Insurance Plans
+  Physical Therapy Sesssions for All Ages and Conditions
 </h1>
 
 <p className="text-center">
-  Find insurance providers that help cover your physical therapy needs.
+  Find providers that help cover your physical therapy needs.
 </p>
 
-        {/* UnitedHealthcare Card */}
+        {/* Geriatric Therapy Card */}
         <div className="col-md-4">
           <Card style={{ width: "18rem" }}>
             <Card.Img
               variant="top"
-              src="https://skylinebenefit.com/wp-content/uploads/2022/07/UnitedHealthcare.jpg"
+              src="https://www.news-medical.net/images/Article_Images/ImageForArticle_25184_17243368774423972.jpg"
               style={{ height: "200px", objectFit: "cover" }}
             />
 
             <Card.Body>
-              <Card.Title>United Healthcare</Card.Title>
+              <Card.Title>Geriatric Therapy</Card.Title>
               <Card.Text>
-                Learn about United Healthcare physical therapy coverage and benefits.
+                Specialized care for older adults with age-related physical challenges.
               </Card.Text>
 
               <Link to="/signup">
@@ -48,19 +48,20 @@ function CardExample() {
         </div>
 
 
-        {/* Aetna Card */}
+        {/* Orthopedic Therapy Card */}
         <div className="col-md-4">
           <Card style={{ width: "18rem" }}>
             <Card.Img
               variant="top"
-              src="https://healthcareinsider.com/wp-content/uploads/2025/09/aetna-health-insurance-logo.png"
+              src="https://irp.cdn-website.com/b174dce8/dms3rep/multi/bb-a94f4f13.PNG"
               style={{ height: "200px", objectFit: "cover" }}
             />
 
             <Card.Body>
-              <Card.Title>Aetna</Card.Title>
+              <Card.Title>Orthopedic Therapy</Card.Title>
               <Card.Text>
-                Explore Aetna insurance options for physical therapy services.
+                Treatment for injuries affecting muscles, bones, joints,
+          and ligaments.
               </Card.Text>
 
             <Link to="/signup">
@@ -74,19 +75,20 @@ function CardExample() {
         </div>
 
 
-        {/* Blue Cross Blue Shield Card */}
+        {/*Neurological Therapy Card */}
         <div className="col-md-4">
           <Card style={{ width: "18rem" }}>
             <Card.Img
               variant="top"
-              src="https://news.ibx.com/wp-content/uploads/2020/10/blue-cross-blue-shield-logo-vector_Newsroom.jpg"
+              src="https://petersenpt.com/wp-content/uploads/2018/05/Neurological-Rehabilitation-768x512.jpeg"
               style={{ height: "200px", objectFit: "cover" }}
             />
 
             <Card.Body>
-              <Card.Title>Blue Cross Blue Shield</Card.Title>
+              <Card.Title>Neurological Therapy</Card.Title>
               <Card.Text>
-                Find information about Blue Cross Blue Shield therapy coverage.
+                Helps improve movement, balance, and coordination for
+          people with neurological conditions.
               </Card.Text>
 
             <Link to="/signup">
