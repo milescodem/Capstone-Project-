@@ -1,7 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 async function connectToDB() {
-   await mongoose.connect('mongodb://localhost:27017/')
-   console.log('Connected to DB');
+  try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/ClientsDB");
+    console.log("Connected to ClientsDB");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error);
+  }
 }
+
 export default connectToDB;

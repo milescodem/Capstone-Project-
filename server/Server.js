@@ -1,25 +1,27 @@
-import express from 'express'
-import cors from 'cors'
-import connectToDB from './dbConnection.js'
-import clientRouter from './routes/clientRouterjs'
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
 
-await connectToDB()
+import insuranceRouter from "../Router/insuranceRouter.js";
+import clientRouter from "../Router/clientRouter.js";
 
-const server = express()
-server.use(clientRouter)
+const app = express();
 
-server.use (cors())
+app.use(cors());
+app.use(express.json());
 
-server.get('/', (req, res) => {
-    res.send('Server is running!')
-})
-server.post('/api/data', (req, res) => {
-    res.send('Post request received!')
-})
-server.put('/api/submit', (req, res) => {
-    res.send('Put request received!')
-}
-)
-server.listen(3000, () => {
-    console.log('Server is running on port 3000')
-})
+// Insurance login route
+app.use("/insurance", insuranceRouter);
+app.use("/clients", clientRouter);
+
+mongoose.connect("mongodb://127.0.0.1:27017/ClientsDB")
+  .then(() => {
+    console.log("Connected to ClientsDB");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
