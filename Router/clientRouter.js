@@ -1,5 +1,5 @@
 import express from "express";
-import Client from "../server/clients.js";
+import Client from "../Client/clients.js";
 
 const router = express.Router();
 

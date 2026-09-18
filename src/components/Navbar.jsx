@@ -1,29 +1,57 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 function MyNavbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Physical Therapy</Navbar.Brand>
+
+        {/* Website Name */}
+        <Navbar.Brand as={Link} to="/">
+          Physical Therapy
+        </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Login</Nav.Link>
+
+            {/* Home */}
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+
+            {/* Login */}
+            <Nav.Link as={Link} to="/login">
+              Login
+            </Nav.Link>
+
+            {/* More Menu */}
             <NavDropdown title="More" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Appointments</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Doctors
+
+              <NavDropdown.Item as={Link} to="/geriatric">
+                Geriatric Therapy
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Contact Us</NavDropdown.Item>
+
+              <NavDropdown.Item as={Link} to="/orthopedic">
+                Orthopedic Therapy
+              </NavDropdown.Item>
+
+              <NavDropdown.Item as={Link} to="/neurological">
+                Neurological Therapy
+              </NavDropdown.Item>
+
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+
+              <NavDropdown.Item as={Link} to="/signup">
+                Sign Up
               </NavDropdown.Item>
+
             </NavDropdown>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
