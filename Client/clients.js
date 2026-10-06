@@ -1,9 +1,17 @@
+
 import mongoose from "mongoose";
 
 const clientSchema = new mongoose.Schema({
+
   firstName: String,
+
   lastName: String,
+
   email: String,
+
+  userName: String,
+
+  password: String,
 
   contactInfo: [
     {
@@ -18,8 +26,10 @@ const clientSchema = new mongoose.Schema({
       phone: String
     }
   ]
+
 });
 
 const Client = mongoose.model("Client", clientSchema, "Clients");
 
 export default Client;
+

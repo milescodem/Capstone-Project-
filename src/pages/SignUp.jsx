@@ -94,8 +94,9 @@ export default function SignUp() {
         </form>
 
         <div className="signup-footer">
-          Already have an account? <a href="/login">Login</a>
-        </div>
+         Already have an account?{" "}
+       <a href="/login">Login</a>
+      </div>
 
       </div>
     </div>

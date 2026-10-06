@@ -1,16 +1,21 @@
 /* Home Page Background */
+
 body {
-  background-color: grey;
+  background-color: white;
   font-family: Arial, sans-serif;
 }
 
-/* Space under navbar */
-.container {
+
+/* Home Page Container */
+
+.home-container {
   margin-top: 40px;
 }
 
-/* Card Styling */
-.card {
+
+/* Home Page Cards */
+
+.home-card {
   border: none;
   border-radius: 15px;
   overflow: hidden;
@@ -19,43 +24,57 @@ body {
   margin-bottom: 30px;
 }
 
-/* Card hover effect */
-.card:hover {
+
+/* Card Hover Effect */
+
+.home-card:hover {
   transform: translateY(-8px);
 }
 
+
 /* Card Images */
-.card img {
+
+.home-card img {
   border-bottom: 3px solid #0d6efd;
 }
 
+
 /* Card Titles */
-.card-title {
+
+.home-card .card-title {
   color: #0d6efd;
   font-size: 22px;
   font-weight: bold;
 }
 
+
 /* Card Text */
-.card-text {
+
+.home-card .card-text {
   color: #555;
   min-height: 50px;
 }
 
-/* Buttons */
-.btn-primary {
+
+/* Home Page Buttons */
+
+.home-card .btn-primary {
   background-color: #0d6efd;
   border-radius: 20px;
   padding: 8px 25px;
   border: none;
 }
 
-.btn-primary:hover {
+
+/* Button Hover */
+
+.home-card .btn-primary:hover {
   background-color: #084298;
 }
 
-/* Make cards align nicely */
-.row {
-  display: flex;
+
+/* Home Page Rows */
+
+.home-container .row {
   justify-content: center;
 }

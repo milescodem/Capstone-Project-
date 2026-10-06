@@ -1,3 +1,4 @@
+
 import express from "express";
 import Client from "../Client/clients.js";
 
@@ -14,6 +15,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Could not get clients" });
   }
 });
+
 
 router.get("/:id", async (req, res) => {
   console.log("Request received for client with id:", req.params.id);
@@ -32,4 +34,56 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+// LOGIN
+router.post("/login", async (req, res) => {
+
+  try {
+
+    const { userName, password } = req.body;
+
+    console.log("Login attempt:", userName);
+
+    // Find the client
+    const client = await Client.findOne({ userName });
+
+    if (!client) {
+      return res.status(401).json({
+        error: "Username not found"
+      });
+    }
+
+    // Check password
+    if (client.password !== password) {
+      return res.status(401).json({
+        error: "Incorrect password"
+      });
+    }
+
+    // Login successful
+    res.json({
+      message: "Login successful",
+
+      client: {
+        id: client._id,
+        firstName: client.firstName,
+        lastName: client.lastName,
+        email: client.email,
+        userName: client.userName
+      }
+    });
+
+  } catch (error) {
+
+    console.error("Login error:", error);
+
+    res.status(500).json({
+      error: "Login failed"
+    });
+
+  }
+
+});
+
 export default router;
+

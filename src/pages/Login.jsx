@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/insurance", {
+      const response = await fetch("http://localhost:3000/clients/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,8 +90,9 @@ function Login() {
         </form>
 
         <div className="signup-link">
-          Don't have an account? Create one
-        </div>
+         Don't have an account?{" "}
+       <Link to="/signup">Create one</Link>
+</div>
 
       </div>
     </div>
