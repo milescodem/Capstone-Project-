@@ -1,6 +1,6 @@
 
 import express from "express";
-import Client from "../Client/clients.js";
+import Client from "../models/clients.js";
 
 const router = express.Router();
 

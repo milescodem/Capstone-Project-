@@ -1,5 +1,5 @@
 import express from "express";
-import Insurance from "../server/insurance.js";
+import Insurance from "../models/insurance.js";
 
 const router = express.Router();
 
@@ -11,7 +11,9 @@ router.get("/", async (req, res) => {
     res.json(insurance);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Could not get insurance" });
+    res.status(500).json({
+      error: "Could not get insurance"
+    });
   }
 });
 
