@@ -1,8 +1,10 @@
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
 import clientRouter from "./routes/clientRouter.js";
+import appointmentRouter from "./routes/appointmentRoutes.js";
 
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(express.json());
 
 // Client routes
 app.use("/clients", clientRouter);
+app.use("/appointments", appointmentRouter);
 
 // Connect to MongoDB
 mongoose
@@ -25,4 +28,4 @@ mongoose
   })
   .catch((error) => {
     console.error("Database connection error:", error);
-  }); 
+  });

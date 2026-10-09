@@ -30,11 +30,15 @@ function Login() {
         return;
       }
 
+    
       // Remember the logged-in user
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userName", userName);
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userName", data.client.userName);
+    localStorage.setItem("clientId", data.client.id);
+    localStorage.setItem("userEmail", data.client.email);
 
-      alert("Login successful!");
+      alert("Login successful!"); 
+
 
       // Send user to appointment page
       navigate("/appointment");

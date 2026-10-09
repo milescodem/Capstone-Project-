@@ -1,16 +1,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #1e3a8a;
+  background: white;
 }
 
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Login styles */
 .login-box {
   background: white;
   padding: 30px;
@@ -43,4 +37,27 @@ body {
 
 .login-box button:hover {
   background: #1d4ed8;
+}
+
+/* Appointment page layout */
+.appointment-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.appointment-card .form-control,
+.appointment-card .form-select {
+  width: 100%;
+  min-height: 45px;
+  font-size: 16px;
+}
+
+.appointment-card textarea.form-control {
+  min-height: 120px;
+}
+
+.appointment-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
 }
