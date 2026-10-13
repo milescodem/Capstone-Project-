@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
@@ -12,93 +13,107 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/clients/login", {
+      const apiUrl = import.meta.env.REACT_API_URL;
+
+      console.log("API URL:", apiUrl);
+      console.log("Login endpoint:", `${apiUrl}/clients/login`);
+
+      if (!apiUrl) {
+        throw new Error(
+          "REACT_APP_API_URL is missing. Check your .env and vite.config.js files."
+        );
+      }
+
+      const response = await fetch(`${apiUrl}/clients/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          userName: userName,
-          password: password,
-        }),
+        body: JSON.stringify({ userName, password }),
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
+
+      console.log("Login response status:", response.status);
+      console.log("Login response:", responseText);
+
+      let data;
+
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        throw new Error(
+          `Server returned a non-JSON response (HTTP ${response.status}).`
+        );
+      }
 
       if (!response.ok) {
-        alert(data.error || "Login failed");
+        alert(data.error || data.message || "Login failed.");
         return;
       }
 
-    
-      // Remember the logged-in user
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userName", data.client.userName);
-    localStorage.setItem("clientId", data.client.id);
-    localStorage.setItem("userEmail", data.client.email);
+      if (!data.client?.id) {
+        alert("Login response is missing the client ID.");
+        return;
+      }
 
-      alert("Login successful!"); 
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem(
+        "userName",
+        data.client.userName || userName
+      );
+      localStorage.setItem("clientId", data.client.id);
+      localStorage.setItem("userEmail", data.client.email || "");
 
-
-      // Send user to appointment page
+      alert("Login successful!");
       navigate("/appointment");
-
     } catch (error) {
-      console.error(error);
-      alert("Could not connect to the server.");
+      console.error("Login error:", error);
+      alert(error.message || "Unable to connect to the server.");
     }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
+    <div className="login-box">
+      <h2>Login</h2>
 
-        <div className="login-header">
-          <h1>Welcome Back</h1>
-          <p>Sign in to continue to your account</p>
+      <form onSubmit={handleLogin}>
+        <div className="mb-3">
+          <label htmlFor="userName" className="form-label">
+            Username
+          </label>
+          <input
+            id="userName"
+            type="text"
+            className="form-control"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
         </div>
 
-        <form className="login-form" onSubmit={handleLogin}>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-          <div className="form-group">
-            <label>Username</label>
+        <button type="submit" className="btn btn-success w-100">
+          Login
+        </button>
+      </form>
 
-            <input
-              type="text"
-              placeholder="Enter your username"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Password</label>
-
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="login-button"
-          >
-            Login
-          </button>
-
-        </form>
-
-        <div className="signup-link">
-         Don't have an account?{" "}
-       <Link to="/signup">Create one</Link>
-</div>
-
-      </div>
+      <p className="mt-3">
+        Don't have an account? <Link to="/signup">Sign Up</Link>
+      </p>
     </div>
   );
 }

@@ -1,0 +1,49 @@
+
+.manage-appointments-page {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.manage-appointments-page h1 {
+  color: #198754;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.manage-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.managed-appointment-card,
+.appointment-empty-card {
+  margin-bottom: 25px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.managed-appointment-card .card-body,
+.appointment-empty-card .card-body {
+  padding: 25px;
+}
+
+.managed-appointment-card h3 {
+  color: #198754;
+  margin-bottom: 20px;
+}
+
+.managed-appointment-card p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.managed-appointment-card .form-control {
+  padding: 12px;
+}
+
+.back-to-booking-button {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}

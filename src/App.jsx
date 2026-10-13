@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Appointment from "./pages/Appointment";
 import ManageAppointment from "./pages/ManageAppointment";
+import Admin from "./Admin.jsx";
+import Chatbot from "./pages/Chatbot";
 
 import Geriatric from "./pages/ptClasses/Geriatric";
 import Orthopedic from "./pages/ptClasses/Orthopedic";
@@ -26,29 +28,51 @@ function App() {
 
           <Navbar.Collapse id="navbar">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to="/login">Login</Nav.Link>
-              <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
+
+              <Nav.Link as={Link} to="/login">
+                Login
+              </Nav.Link>
+
+              <Nav.Link as={Link} to="/signup">
+                Sign Up
+              </Nav.Link>
+
               <Nav.Link as={Link} to="/manage-appointment">
-                 Manage Appointment</Nav.Link>
+                Manage Appointment
+              </Nav.Link>
+
+              <Nav.Link as={Link} to="/chatbot">
+                Chatbot
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* Pages */}
+     
+{/* Pages */}
       <Container className="mt-4">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/geriatric" element={<Geriatric />} />
-          <Route path="/orthopedic" element={<Orthopedic />} />
-          <Route path="/neurological" element={<Neurological />} />
-          <Route path="/manage-appointment" element={<ManageAppointment />} />
-          <Route path="/appointment" element={<Appointment />} />
-        </Routes>
-      </Container>
+    <Routes>
+    <Route path="/" element={<Home />} />
+     <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<SignUp />} />
+      <Route path="/geriatric" element={<Geriatric />} />
+      <Route path="/orthopedic" element={<Orthopedic />} />
+      <Route path="/neurological" element={<Neurological />} />
+     <Route path="/appointment" element={<Appointment />} />
+    <Route
+      path="/manage-appointment"
+      element={<ManageAppointment />}
+    />
+    <Route path="/chatbot" element={<Chatbot />} />
+    <Route path="/admin" element={<Admin />} />
+  </Routes>
+</Container>
+
+
 
       {/* Footer */}
       <Container className="mt-5 mb-3 text-center">
@@ -62,4 +86,3 @@ function App() {
 }
 
 export default App;
-    

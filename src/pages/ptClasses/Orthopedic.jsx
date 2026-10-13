@@ -6,11 +6,11 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import "./Orthopedic.css";
+import { Link } from "react-router-dom";
 
 function Orthopedic() {
   return (
     <>
-      <Navbar />
 
       {/* Blue Hero Section */}
       <div className="bg-primary text-white p-1.5 shadow">
@@ -189,9 +189,11 @@ function Orthopedic() {
             physical therapy appointment.
           </p>
 
-          <Button variant="success" size="lg">
-            Sign In to Book an Appointment
-          </Button>
+          <Link to="/login">
+       <Button variant="success">
+           Sign In to Book an Appointment
+         </Button>
+</Link>
 
         </div>
 

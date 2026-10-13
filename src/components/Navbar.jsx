@@ -32,8 +32,8 @@ function MyNavbar() {
             {/* More Menu */}
             <NavDropdown title="More" id="basic-nav-dropdown">
 
-              <NavDropdown.Item as={Link} to="/geriatric">
-                Geriatric Therapy
+              <NavDropdown.Item as={Link} to="/Chatbot">
+                Chatbot
               </NavDropdown.Item>
 
               <NavDropdown.Item as={Link} to="/orthopedic">

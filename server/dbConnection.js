@@ -4,29 +4,31 @@ import mongoose from "mongoose";
 async function connectToDB() {
   try {
     await mongoose.connect("mongodb://127.0.0.1:27017/ClientsDB");
+
     console.log("Connected to ClientsDB");
   } catch (error) {
     console.error("MongoDB connection failed:", error);
+
+    throw error;
   }
 }
 
 export default connectToDB;
 ```
 
-import mongoose from "mongoose";
 
-async function connectToDB() {
+const mongoose = require('mongoose');
+
+const dbConnection = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/ClientsDB");
+    await mongoose.connect(process.env.MONGO_URI);
 
-    console.log("Connected to ClientsDB");
-    console.log("Mongoose readyState:", mongoose.connection.readyState);
-    console.log("Database name:", mongoose.connection.name);
-
+    console.log('MongoDB connected');
   } catch (error) {
-    console.error("MongoDB connection failed:", error);
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
   }
-}
+};
 
-export default connectToDB;
+module.exports = dbConnection;
 
