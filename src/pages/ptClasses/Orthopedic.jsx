@@ -11,12 +11,10 @@ import { Link } from "react-router-dom";
 function Orthopedic() {
   return (
     <>
-
       {/* Blue Hero Section */}
-      <div className="bg-primary text-white p-1.5 shadow">
+      <div className="bg-primary text-white p-2 shadow">
         <Container>
           <Row className="align-items-center">
-
             <Col md={8}>
               <h1 className="display-5 fw-bold">
                 Orthopedic Physical Therapy
@@ -27,28 +25,30 @@ function Orthopedic() {
                 with physical therapy programs designed around your needs.
               </p>
 
-              <Button variant="light" size="lg">
+              <Button
+                variant="light"
+                size="lg"
+                onClick={() =>
+                  document.getElementById("classes")?.scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
+              >
                 Explore Classes
               </Button>
             </Col>
 
             <Col md={4} className="text-center">
-              <div className="display-1">
-                🦴
-              </div>
+              <div className="display-1">🦴</div>
 
-              <p className="mb-0">
-                Move Better. Feel Stronger.
-              </p>
+              <p className="mb-0">Move Better. Feel Stronger.</p>
             </Col>
-
           </Row>
         </Container>
       </div>
 
       {/* Rest of Page */}
       <Container className="orthopedic-container py-5">
-
         {/* Information Section */}
         <Alert variant="info" className="mb-5">
           <Alert.Heading>
@@ -62,9 +62,8 @@ function Orthopedic() {
           </p>
         </Alert>
 
-
         {/* Classes */}
-        <div className="text-center mb-4">
+        <div id="classes" className="text-center mb-4">
           <h2>Choose Your Program</h2>
 
           <p className="text-muted">
@@ -72,19 +71,15 @@ function Orthopedic() {
           </p>
         </div>
 
-
         <Row className="g-4">
-
           {/* Injury Recovery */}
           <Col md={4}>
             <Card className="h-100 border-0 shadow">
-
               <Card.Header className="bg-dark text-white text-center">
                 Recovery
               </Card.Header>
 
               <Card.Body className="p-4">
-
                 <Card.Title className="fs-3">
                   Injury Recovery
                 </Card.Title>
@@ -100,25 +95,23 @@ function Orthopedic() {
                   <li>Movement training</li>
                 </ul>
 
-                <Button variant="outline-primary" className="w-100">
-                  Select Program
-                </Button>
-
+                <Link to="/signup" className="d-block text-decoration-none">
+                  <Button variant="outline-primary" className="w-100">
+                    Select Program
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
 
-
           {/* Joint Mobility */}
           <Col md={4}>
             <Card className="h-100 border-0 shadow">
-
               <Card.Header className="bg-dark text-white text-center">
                 Mobility
               </Card.Header>
 
               <Card.Body className="p-4">
-
                 <Card.Title className="fs-3">
                   Joint Mobility
                 </Card.Title>
@@ -134,27 +127,25 @@ function Orthopedic() {
                   <li>Joint movement</li>
                 </ul>
 
-                <Button variant="outline-primary" className="w-100">
-                  Select Program
-                </Button>
-
+                <Link to="/signup" className="d-block text-decoration-none">
+                  <Button variant="outline-primary" className="w-100">
+                    Select Program
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
 
-
           {/* Strength */}
           <Col md={4}>
             <Card className="h-100 border-0 shadow">
-
               <Card.Header className="bg-dark text-white text-center">
                 Strength
               </Card.Header>
 
               <Card.Body className="p-4">
-
                 <Card.Title className="fs-3">
-                  Strength & Conditioning
+                  Strength &amp; Conditioning
                 </Card.Title>
 
                 <Card.Text>
@@ -168,20 +159,18 @@ function Orthopedic() {
                   <li>Functional movement</li>
                 </ul>
 
-                <Button variant="outline-primary" className="w-100">
-                  Select Program
-                </Button>
-
+                <Link to="/signup" className="d-block text-decoration-none">
+                  <Button variant="outline-primary" className="w-100">
+                    Select Program
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
-
         </Row>
-
 
         {/* Appointment Section */}
         <div className="text-center mt-5 p-5 bg-light rounded-4">
-
           <h2>Ready to Start Your Recovery?</h2>
 
           <p className="text-muted">
@@ -190,16 +179,14 @@ function Orthopedic() {
           </p>
 
           <Link to="/login">
-       <Button variant="success">
-           Sign In to Book an Appointment
-         </Button>
-</Link>
-
+            <Button variant="success">
+              Sign In to Book an Appointment
+            </Button>
+          </Link>
         </div>
-
       </Container>
     </>
   );
 }
 
-export default Orthopedic;
+export default Orthopedic;  
