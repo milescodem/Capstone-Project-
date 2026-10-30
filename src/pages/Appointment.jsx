@@ -19,61 +19,89 @@ function AppointmentForm() {
   const [comments, setComments] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleAppointment = async (e) => {
-    e.preventDefault();
 
-    const clientId = localStorage.getItem("clientId");
+const handleAppointment = async (e) => {
+  e.preventDefault();
 
-    if (!clientId) {
-      alert("Please log in before scheduling an appointment.");
-      navigate("/login");
+  const clientId = localStorage.getItem("clientId");
+
+  if (!clientId) {
+    alert("Please log in before scheduling an appointment.");
+    navigate("/login");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    console.log("Submitting appointment for client:", clientId);
+
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    let response = await axios.post(`${API_URL}/appointments`, 
+    {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+
+
+
+    //const response = await fetch(
+      //"http://localhost:3000/appointments",
+      //{
+        //method: "POST",
+        //headers: {
+          //"Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clientId,
+          therapyType,
+          therapyClass,
+          date,
+          time,
+          comments,
+        }),
+      }
+    );
+
+    const responseText = await response.text();
+
+    let data = {};
+
+    try {
+      data = responseText ? JSON.parse(responseText) : {};
+    } catch {
+      console.error("Server returned a non-JSON response:", responseText);
+    }
+
+    console.log("Appointment response status:", response.status);
+    console.log("Appointment response data:", data);
+
+    if (!response.ok) {
+      alert(data.error || `Appointment failed. Status: ${response.status}`);
       return;
     }
 
-    try {
-      setLoading(true);
-
-      const response = await fetch(
-        "http://localhost:3000/appointments",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            clientId,
-            therapyType,
-            therapyClass,
-            date,
-            time,
-            comments,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.error || "Could not save appointment.");
-        return;
-      }
-
-      // Save the new appointment ID for the next page
-      localStorage.setItem(
-        "appointmentId",
-        data.appointment._id
-      );
-
-      alert("Appointment scheduled successfully!");
-
-      navigate("/manage-appointment");
-    } catch (error) {
-      console.error("Appointment error:", error);
-      alert("Could not connect to the server.");
-    } finally {
-      setLoading(false);
+    if (!data.appointment?._id) {
+      alert("The server responded, but no appointment ID was returned.");
+      return;
     }
-  };
+
+    localStorage.setItem("appointmentId", data.appointment._id);
+
+    alert("Appointment scheduled successfully!");
+
+    navigate("/manage-appointment");
+  } catch (error) {
+    console.error("Appointment request failed:", error);
+
+    alert(
+      "Could not reach the appointment server. Check that your backend is running on port 3000."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <Container className="py-5">
@@ -86,9 +114,9 @@ function AppointmentForm() {
       </div>
 
       <Row className="justify-content-center">
-        <Col md={8} lg={7}>
-          <Card className="shadow border-0">
-            <Card.Body className="p-4">
+        <Col xs={12} md={10} lg={8} xl={7}>
+          <Card className="shadow border-0 appointment-card">
+            <Card.Body className="p-4 p-md-5">
               <h3 className="mb-4">Appointment Details</h3>
 
               <Form onSubmit={handleAppointment}>
@@ -176,6 +204,7 @@ function AppointmentForm() {
                     </Form.Group>
                   </Col>
                 </Row>
+                
 
                 <Form.Group className="mb-4">
                   <Form.Label>Additional Notes</Form.Label>
