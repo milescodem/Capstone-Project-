@@ -2,9 +2,15 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import "dotenv/config";
 
 import clientRouter from "./routes/clientRouter.js";
 import appointmentRouter from "./routes/appointmentRoutes.js";
+import chatbotRouter from "./routes/chatbotRouter.js";
+import adminRouter from "./routes/adminRouter.js";
+
+
+
 
 const app = express();
 
@@ -12,12 +18,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Client routes
+// Application routes
 app.use("/clients", clientRouter);
 app.use("/appointments", appointmentRouter);
+app.use("/chatbot", chatbotRouter);
+app.use("/admin", adminRouter);
 
 // Connect to MongoDB
 mongoose
+
   .connect("mongodb://localhost:27017/ClientsDB")
   .then(() => {
     console.log("Connected to ClientsDB");
