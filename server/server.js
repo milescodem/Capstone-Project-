@@ -18,18 +18,20 @@ app.get("/", (req, res) => {
 });
 
 // Allow your deployed frontend and local development frontend
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "https://capstone-project-front-end-zeta.vercel.app"
-];
+//const allowedOrigins = [
+//  "http://localhost:5173",
+//  "http://localhost:5174",
+//  "https://capstone-project-front-end-zeta.vercel.app"
+//];
 
 // CORS middleware
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+//app.use(cors({
+//  origin: allowedOrigins,
+//  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+//  allowedHeaders: ["Content-Type", "Authorization"]
+// }));
+
+app.use(cors());
 
 app.use(express.json());
 
