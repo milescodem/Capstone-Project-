@@ -42,17 +42,20 @@ export default function SignUp() {
     try {
       setLoading(true);
 
-      const apiUrl = import.meta.env.VITE_API_URL?.trim();
-
-console.log("API URL:", apiUrl);
-console.log("Registration URL:", `${apiUrl}/clients/register`);
+      // Get the backend URL from Vercel environment variables
+      const apiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/+$/, "");
 
       if (!apiUrl) {
-        throw new Error("VITE_API_URL is missing from your .env file.");
+        throw new Error("VITE_API_URL is missing from your environment variables.");
       }
-const apiUrl = import.meta.env.VITE_API_URL.replace(/\/+$/, "");
 
-const response = await fetch(`${apiUrl}/clients/register`, {
+      const registrationUrl = `${apiUrl}/clients/register`;
+
+      console.log("API URL:", apiUrl);
+      console.log("Registration URL:", registrationUrl);
+
+      // Send registration information to the backend
+      const response = await fetch(registrationUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
