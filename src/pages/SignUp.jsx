@@ -50,8 +50,9 @@ console.log("Registration URL:", `${apiUrl}/clients/register`);
       if (!apiUrl) {
         throw new Error("VITE_API_URL is missing from your .env file.");
       }
+const apiUrl = import.meta.env.VITE_API_URL.replace(/\/+$/, "");
 
-      const response = await fetch(`${apiUrl}/clients/register`, {
+const response = await fetch(`${apiUrl}/clients/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
