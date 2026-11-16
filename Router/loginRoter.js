@@ -1,5 +1,5 @@
 import express from "express";
-import Insurance from "../server/insurance.js";
+import Insurance from "../models/insurance.js";
 
 const router = express.Router();
 

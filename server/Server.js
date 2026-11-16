@@ -27,7 +27,7 @@ app.use("/admin", adminRouter);
 // Connect to MongoDB
 mongoose
 
-  .connect("mongodb://localhost:27017/ClientsDB")
+  .connect(process.env.DATABASE_URL)
   .then(() => {
     console.log("Connected to ClientsDB");
 

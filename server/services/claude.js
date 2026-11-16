@@ -1,3 +1,4 @@
+
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -6,7 +7,7 @@ const client = new Anthropic({
 
 export async function askClaude(prompt) {
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-sonnet-4-6",
     max_tokens: 1024,
     messages: [
       {

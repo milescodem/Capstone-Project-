@@ -13,60 +13,45 @@ function Login() {
     e.preventDefault();
 
     try {
-      const apiUrl = import.meta.env.REACT_API_URL;
-
-      console.log("API URL:", apiUrl);
-      console.log("Login endpoint:", `${apiUrl}/clients/login`);
+      const apiUrl = import.meta.env.VITE_API_URL;
 
       if (!apiUrl) {
-        throw new Error(
-          "REACT_APP_API_URL is missing. Check your .env and vite.config.js files."
-        );
+        throw new Error("VITE_API_URL is missing.");
       }
 
       const response = await fetch(`${apiUrl}/clients/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userName, password }),
+        body: JSON.stringify({
+          userName,
+          password
+        })
       });
 
-      const responseText = await response.text();
-
-      console.log("Login response status:", response.status);
-      console.log("Login response:", responseText);
-
-      let data;
-
-      try {
-        data = JSON.parse(responseText);
-      } catch {
-        throw new Error(
-          `Server returned a non-JSON response (HTTP ${response.status}).`
-        );
-      }
+      const data = await response.json();
 
       if (!response.ok) {
-        alert(data.error || data.message || "Login failed.");
+        alert(data.error || "Login failed.");
         return;
       }
 
-      if (!data.client?.id) {
-        alert("Login response is missing the client ID.");
+      if (!data.client?.id || !data.token) {
+        alert("Login response is missing account information.");
         return;
       }
 
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem(
-        "userName",
-        data.client.userName || userName
-      );
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userName", data.client.userName);
       localStorage.setItem("clientId", data.client.id);
       localStorage.setItem("userEmail", data.client.email || "");
 
       alert("Login successful!");
+
       navigate("/appointment");
+
     } catch (error) {
       console.error("Login error:", error);
       alert(error.message || "Unable to connect to the server.");
@@ -78,10 +63,12 @@ function Login() {
       <h2>Login</h2>
 
       <form onSubmit={handleLogin}>
+
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">
             Username
           </label>
+
           <input
             id="userName"
             type="text"
@@ -96,6 +83,7 @@ function Login() {
           <label htmlFor="password" className="form-label">
             Password
           </label>
+
           <input
             id="password"
             type="password"
@@ -109,6 +97,7 @@ function Login() {
         <button type="submit" className="btn btn-success w-100">
           Login
         </button>
+
       </form>
 
       <p className="mt-3">
